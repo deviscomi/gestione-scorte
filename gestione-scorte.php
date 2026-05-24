@@ -19,10 +19,25 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'GS_VERSION',    '1.0.0' );
+// ─── Version & GitHub update source ──────────────────────────────────────────
+
+define( 'GESTIONE_SCORTE_VERSION',     '1.0.0' );
+define( 'GESTIONE_SCORTE_GITHUB_USER', 'deviscomi' );
+define( 'GESTIONE_SCORTE_GITHUB_REPO', 'gestione-scorte' );
+define( 'GESTIONE_SCORTE_GITHUB_TOKEN', '' ); // optional: Personal Access Token for private repos / rate-limit bypass
+
+// ─── Internal aliases ─────────────────────────────────────────────────────────
+
+define( 'GS_VERSION',    GESTIONE_SCORTE_VERSION );
 define( 'GS_PLUGIN_FILE', __FILE__ );
 define( 'GS_PLUGIN_DIR',  plugin_dir_path( __FILE__ ) );
 define( 'GS_PLUGIN_URL',  plugin_dir_url( __FILE__ ) );
+
+// ─── Auto-updater (GitHub Releases) ──────────────────────────────────────────
+// Loaded unconditionally so update checks work even when WooCommerce is absent.
+
+require_once GS_PLUGIN_DIR . 'includes/class-gs-updater.php';
+GS_Updater::init();
 
 // ─── Activation check ────────────────────────────────────────────────────────
 
