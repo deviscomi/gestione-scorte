@@ -1,0 +1,94 @@
+<?php
+/**
+ * Plugin Name:       Gestione Scorte
+ * Plugin URI:        https://example.com/gestione-scorte
+ * Description:       Gestione rapida delle scorte WooCommerce tramite barcode scanner per punto vendita fisico ed e-commerce.
+ * Version:           1.0.0
+ * Author:            Devis Comi
+ * Author URI:        https://deviscomi.it
+ * License:           GPL-2.0+
+ * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
+ * Text Domain:       gestione-scorte
+ * Domain Path:       /languages
+ * Requires at least: 5.8
+ * Requires PHP:      7.4
+ * WC requires at least: 6.0
+ */
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
+define( 'GS_VERSION',    '1.0.0' );
+define( 'GS_PLUGIN_FILE', __FILE__ );
+define( 'GS_PLUGIN_DIR',  plugin_dir_path( __FILE__ ) );
+define( 'GS_PLUGIN_URL',  plugin_dir_url( __FILE__ ) );
+
+// ─── Activation check ────────────────────────────────────────────────────────
+
+register_activation_hook( __FILE__, 'gs_activation_check' );
+
+function gs_activation_check() {
+	if ( ! gs_is_woocommerce_active() ) {
+		deactivate_plugins( plugin_basename( __FILE__ ) );
+		wp_die(
+			__( 'Il plugin <strong>Gestione Scorte</strong> richiede WooCommerce installato e attivo. Installa e attiva WooCommerce prima di procedere.', 'gestione-scorte' ),
+			__( 'Dipendenza mancante — Gestione Scorte', 'gestione-scorte' ),
+			array( 'back_link' => true )
+		);
+	}
+}
+
+// ─── Runtime dependency check (admin_init) ───────────────────────────────────
+
+add_action( 'admin_init', 'gs_check_woocommerce_dependency' );
+
+function gs_check_woocommerce_dependency() {
+	if ( gs_is_woocommerce_active() ) {
+		return;
+	}
+
+	if ( ! function_exists( 'is_plugin_active' ) ) {
+		include_once ABSPATH . 'wp-admin/includes/plugin.php';
+	}
+
+	if ( is_plugin_active( plugin_basename( __FILE__ ) ) ) {
+		deactivate_plugins( plugin_basename( __FILE__ ) );
+		add_action( 'admin_notices', 'gs_woocommerce_missing_notice' );
+	}
+}
+
+function gs_woocommerce_missing_notice() {
+	?>
+	<div class="notice notice-error">
+		<p>
+			<?php
+			_e(
+				'<strong>Gestione Scorte</strong> richiede WooCommerce installato e attivo. Il plugin è stato disattivato automaticamente.',
+				'gestione-scorte'
+			);
+			?>
+		</p>
+	</div>
+	<?php
+}
+
+function gs_is_woocommerce_active() {
+	return class_exists( 'WooCommerce' );
+}
+
+// ─── Bootstrap ───────────────────────────────────────────────────────────────
+
+add_action( 'plugins_loaded', 'gs_init' );
+
+function gs_init() {
+	if ( ! gs_is_woocommerce_active() ) {
+		return;
+	}
+
+	require_once GS_PLUGIN_DIR . 'includes/class-gs-admin.php';
+	require_once GS_PLUGIN_DIR . 'includes/class-gs-ajax.php';
+
+	GS_Admin::init();
+	GS_Ajax::init();
+}

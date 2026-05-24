@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(if \\(-not $?\\) { \"Directory empty or not found, creating structure...\" })"
+    ]
+  }
+}
