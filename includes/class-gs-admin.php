@@ -76,6 +76,12 @@ class GS_Admin {
 		?>
 		<div class="wrap gs-wrap">
 
+		<?php if ( ! empty( $_GET['gs_activated'] ) ) : ?>
+			<div class="notice notice-success is-dismissible">
+				<p><?php esc_html_e( 'Licenza attivata con successo! Benvenuto in Gestione Scorte.', 'gestione-scorte' ); ?></p>
+			</div>
+		<?php endif; ?>
+
 			<h1 class="gs-page-title">
 				<span class="dashicons dashicons-archive"></span>
 				<?php esc_html_e( 'Gestione Scorte', 'gestione-scorte' ); ?>

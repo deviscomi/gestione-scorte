@@ -223,10 +223,18 @@ class GS_License {
 
 		$result = self::api_request( 'GET', 'licenses/validate/' . rawurlencode( $key ) );
 
-		if ( $result['success'] && ! empty( $result['data']['isValid'] ) ) {
-			update_option( self::OPT_STATUS, 'active' );
-			set_transient( self::TRANSIENT_KEY, 'valid', DAY_IN_SECONDS );
-			return;
+		if ( $result['success'] ) {
+			// LMFWC returns success:true only for valid/active licenses.
+			// Honour explicit isValid:false only when the field is present and
+			// strictly false — older LMFWC versions omit the field entirely.
+			$data             = is_array( $result['data'] ) ? $result['data'] : array();
+			$explicit_invalid = array_key_exists( 'isValid', $data ) && false === $data['isValid'];
+
+			if ( ! $explicit_invalid ) {
+				update_option( self::OPT_STATUS, 'active' );
+				set_transient( self::TRANSIENT_KEY, 'valid', DAY_IN_SECONDS );
+				return;
+			}
 		}
 
 		// Key invalid, expired, or revoked.
@@ -320,13 +328,24 @@ class GS_License {
 			return;
 		}
 
+		// After a successful activation send the user straight to the main plugin
+		// page (Carico/Scarico UI) — the license page is not needed and its URL
+		// can 404 on certain server rewrite configurations.
+		// On failure, or after deactivation, stay on the license page.
+		if ( 'activate' === $action && $result['success'] ) {
+			$redirect_page = 'gestione-scorte';
+			$extra_args    = array( 'gs_activated' => '1' );
+		} else {
+			$redirect_page = 'gestione-scorte-license';
+			$extra_args    = array(
+				'gs_msg'      => $result['message'],   // add_query_arg encodes this
+				'gs_msg_type' => $result['success'] ? 'success' : 'error',
+			);
+		}
+
 		wp_safe_redirect(
 			add_query_arg(
-				array(
-					'page'        => 'gestione-scorte-license',
-					'gs_msg'      => rawurlencode( $result['message'] ),
-					'gs_msg_type' => $result['success'] ? 'success' : 'error',
-				),
+				array_merge( array( 'page' => $redirect_page ), $extra_args ),
 				admin_url( 'admin.php' )
 			)
 		);
