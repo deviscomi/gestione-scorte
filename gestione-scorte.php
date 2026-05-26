@@ -3,7 +3,7 @@
  * Plugin Name:       Gestione Scorte
  * Plugin URI:        https://deviscomi.it/prodotto/plugin-gestione-scorte
  * Description:       Gestione rapida delle scorte WooCommerce tramite barcode scanner per punto vendita fisico ed e-commerce.
- * Version:           1.0.0
+ * Version:           1.1.0
  * Author:            Devis Comi
  * Author URI:        https://deviscomi.it
  * License:           GPL-2.0+
@@ -21,7 +21,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 // ─── Version & GitHub update source ──────────────────────────────────────────
 
-define( 'GESTIONE_SCORTE_VERSION',     '1.0.0' );
+define( 'GESTIONE_SCORTE_VERSION',     '1.1.0' );
 define( 'GESTIONE_SCORTE_GITHUB_USER', 'deviscomi' );
 define( 'GESTIONE_SCORTE_GITHUB_REPO', 'gestione-scorte' );
 define( 'GESTIONE_SCORTE_GITHUB_TOKEN', '' ); // optional: Personal Access Token for private repos / rate-limit bypass
