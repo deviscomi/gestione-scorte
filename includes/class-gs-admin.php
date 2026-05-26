@@ -69,6 +69,10 @@ class GS_Admin {
 	// ─── Page HTML ────────────────────────────────────────────────────────────
 
 	public static function render_page() {
+		if ( ! GS_License::is_active() ) {
+			GS_License::render_inline_activation();
+			return;
+		}
 		?>
 		<div class="wrap gs-wrap">
 

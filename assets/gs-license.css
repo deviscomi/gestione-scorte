@@ -1,0 +1,325 @@
+/* =============================================================================
+   Gestione Scorte — License UI Styles
+   ============================================================================= */
+
+/* ── Page wrap ───────────────────────────────────────────────────────────── */
+
+.gs-license-wrap {
+	max-width: 560px;
+}
+
+.gs-license-title {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	font-size: 1.55em;
+	margin-bottom: 6px;
+}
+
+.gs-license-title .dashicons {
+	font-size: 1.15em;
+	width: auto;
+	height: auto;
+	color: #2271b1;
+}
+
+.gs-license-notice {
+	margin-top: 14px;
+	margin-bottom: 0;
+}
+
+/* ── Card ────────────────────────────────────────────────────────────────── */
+
+.gs-license-card {
+	background: #fff;
+	border: 1px solid #dcdcde;
+	border-radius: 10px;
+	padding: 28px 32px;
+	margin-top: 20px;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+/* ── Status badge ────────────────────────────────────────────────────────── */
+
+.gs-license-status {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	padding: 11px 16px;
+	border-radius: 7px;
+	margin-bottom: 26px;
+	font-size: 14px;
+}
+
+.gs-license-status--active {
+	background: #edfbee;
+	border: 1px solid #68de7c;
+	color: #1a7928;
+}
+
+.gs-license-status--inactive {
+	background: #fff0f0;
+	border: 1px solid #f86368;
+	color: #8f1e24;
+}
+
+.gs-license-dot {
+	display: inline-block;
+	width: 10px;
+	height: 10px;
+	border-radius: 50%;
+	flex-shrink: 0;
+}
+
+.gs-license-status--active   .gs-license-dot { background: #1a7928; }
+.gs-license-status--inactive .gs-license-dot { background: #f86368; }
+
+/* ── Metadata (dl grid) ──────────────────────────────────────────────────── */
+
+.gs-license-meta {
+	display: grid;
+	grid-template-columns: 130px 1fr;
+	row-gap: 10px;
+	column-gap: 12px;
+	margin: 0 0 26px;
+	font-size: 13px;
+}
+
+.gs-license-meta dt {
+	color: #646970;
+	font-weight: 600;
+	align-self: center;
+}
+
+.gs-license-meta dd {
+	margin: 0;
+	color: #1d2327;
+	align-self: center;
+}
+
+.gs-license-meta code {
+	background: #f6f7f7;
+	padding: 2px 7px;
+	border-radius: 4px;
+	font-size: 12px;
+	letter-spacing: 0.8px;
+	color: #1d2327;
+}
+
+/* ── Forms ───────────────────────────────────────────────────────────────── */
+
+.gs-license-form {
+	margin-top: 4px;
+}
+
+.gs-license-field {
+	margin-bottom: 18px;
+}
+
+.gs-license-label {
+	display: block;
+	font-weight: 600;
+	font-size: 13px;
+	color: #1d2327;
+	margin-bottom: 8px;
+}
+
+.gs-license-input {
+	display: block;
+	width: 100%;
+	max-width: 420px;
+	padding: 9px 13px;
+	font-size: 14px;
+	font-family: monospace;
+	letter-spacing: 1px;
+	border: 1px solid #c3c4c7;
+	border-radius: 6px;
+	box-sizing: border-box;
+	color: #1d2327;
+	background: #fff;
+	transition: border-color 0.18s, box-shadow 0.18s;
+}
+
+.gs-license-input:focus {
+	border-color: #2271b1;
+	box-shadow: 0 0 0 2px rgba(34, 113, 177, 0.18);
+	outline: none;
+}
+
+/* ── Buttons ─────────────────────────────────────────────────────────────── */
+
+.gs-license-btn {
+	display: inline-flex;
+	align-items: center;
+	gap: 7px;
+	padding: 9px 20px;
+	border: none;
+	border-radius: 7px;
+	font-size: 13px;
+	font-weight: 700;
+	cursor: pointer;
+	transition: background 0.15s, transform 0.1s;
+	line-height: 1.4;
+	text-decoration: none;
+}
+
+.gs-license-btn:hover {
+	transform: translateY(-1px);
+}
+
+.gs-license-btn .dashicons {
+	font-size: 15px;
+	width: 15px;
+	height: 15px;
+	margin-top: 1px;
+}
+
+.gs-license-btn--activate {
+	background: #2271b1;
+	color: #fff;
+}
+
+.gs-license-btn--activate:hover {
+	background: #135e96;
+	color: #fff;
+}
+
+.gs-license-btn--deactivate {
+	background: #f0f0f1;
+	color: #3c434a;
+	border: 1px solid #c3c4c7;
+}
+
+.gs-license-btn--deactivate:hover {
+	background: #dcdcde;
+	color: #1d2327;
+}
+
+/* ── Deactivate hint ─────────────────────────────────────────────────────── */
+
+.gs-license-deactivate-hint {
+	font-size: 13px;
+	color: #646970;
+	line-height: 1.65;
+	margin: 0 0 18px;
+}
+
+/* ── Help bar ────────────────────────────────────────────────────────────── */
+
+.gs-license-help {
+	display: flex;
+	align-items: flex-start;
+	gap: 10px;
+	margin-top: 18px;
+	padding: 14px 18px;
+	background: #f6f7f7;
+	border-left: 4px solid #c3c4c7;
+	border-radius: 0 6px 6px 0;
+	font-size: 13px;
+	color: #646970;
+}
+
+.gs-license-help .dashicons {
+	flex-shrink: 0;
+	color: #787c82;
+	margin-top: 1px;
+}
+
+.gs-license-help p {
+	margin: 0;
+	line-height: 1.65;
+}
+
+.gs-license-help a {
+	color: #2271b1;
+}
+
+.gs-license-help a:hover {
+	color: #135e96;
+}
+
+/* ── Inline activation panel (rendered on the main plugin page) ──────────── */
+
+.gs-license-inline-panel {
+	background: #fff;
+	border: 1px solid #dcdcde;
+	border-radius: 10px;
+	padding: 48px 32px;
+	margin-top: 24px;
+	max-width: 540px;
+	text-align: center;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.gs-license-inline-icon .dashicons {
+	font-size: 52px;
+	width: 52px;
+	height: 52px;
+	color: #c3c4c7;
+	margin-bottom: 14px;
+}
+
+.gs-license-inline-panel h2 {
+	font-size: 1.25em;
+	margin: 0 0 12px;
+	color: #1d2327;
+}
+
+.gs-license-inline-desc {
+	font-size: 13px;
+	color: #646970;
+	line-height: 1.65;
+	margin: 0 0 28px;
+}
+
+.gs-license-inline-row {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 10px;
+	flex-wrap: wrap;
+	margin-bottom: 18px;
+}
+
+.gs-license-input--inline {
+	max-width: 260px;
+}
+
+.gs-license-inline-link {
+	display: inline-block;
+	font-size: 13px;
+	color: #2271b1;
+	text-decoration: none;
+}
+
+.gs-license-inline-link:hover {
+	color: #135e96;
+	text-decoration: underline;
+}
+
+/* ── Responsive ──────────────────────────────────────────────────────────── */
+
+@media (max-width: 600px) {
+	.gs-license-card {
+		padding: 20px 18px;
+	}
+
+	.gs-license-meta {
+		grid-template-columns: 1fr;
+		row-gap: 4px;
+	}
+
+	.gs-license-meta dt {
+		margin-top: 8px;
+	}
+
+	.gs-license-inline-row {
+		flex-direction: column;
+	}
+
+	.gs-license-input--inline,
+	.gs-license-btn {
+		width: 100%;
+		justify-content: center;
+	}
+}

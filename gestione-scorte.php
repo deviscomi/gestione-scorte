@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name:       Gestione Scorte
- * Plugin URI:        https://example.com/gestione-scorte
+ * Plugin URI:        https://deviscomi.it/prodotto/plugin-gestione-scorte
  * Description:       Gestione rapida delle scorte WooCommerce tramite barcode scanner per punto vendita fisico ed e-commerce.
  * Version:           1.0.0
  * Author:            Devis Comi
@@ -25,6 +25,12 @@ define( 'GESTIONE_SCORTE_VERSION',     '1.0.0' );
 define( 'GESTIONE_SCORTE_GITHUB_USER', 'deviscomi' );
 define( 'GESTIONE_SCORTE_GITHUB_REPO', 'gestione-scorte' );
 define( 'GESTIONE_SCORTE_GITHUB_TOKEN', '' ); // optional: Personal Access Token for private repos / rate-limit bypass
+
+// ─── License server (LMFWC on deviscomi.it) ──────────────────────────────────
+
+define( 'GS_LICENSE_SERVER_URL',  'https://deviscomi.it' );
+define( 'GS_API_CONSUMER_KEY',    'ck_78e5cee10020fcf4248c4b265cd9b88289cbb925' );
+define( 'GS_API_CONSUMER_SECRET', 'cs_4910b243080a2d3e80b4150e2185d6060d35a8af' );
 
 // ─── Internal aliases ─────────────────────────────────────────────────────────
 
@@ -101,9 +107,11 @@ function gs_init() {
 		return;
 	}
 
+	require_once GS_PLUGIN_DIR . 'includes/class-gs-license.php';
 	require_once GS_PLUGIN_DIR . 'includes/class-gs-admin.php';
 	require_once GS_PLUGIN_DIR . 'includes/class-gs-ajax.php';
 
+	GS_License::init();
 	GS_Admin::init();
 	GS_Ajax::init();
 }
