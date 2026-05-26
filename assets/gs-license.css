@@ -1,0 +1,250 @@
+/* =============================================================================
+   Gestione Scorte — License Page Styles
+   ============================================================================= */
+
+/* ── License box ─────────────────────────────────────────────────────────── */
+
+.gs-license-box {
+	background: #fff;
+	border: 1px solid #e0e0e0;
+	border-radius: 10px;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+	padding: 32px 36px;
+	max-width: 600px;
+	margin-top: 8px;
+}
+
+/* ── Status row ──────────────────────────────────────────────────────────── */
+
+.gs-license-status-row {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	margin-bottom: 28px;
+}
+
+.gs-license-status-label {
+	font-weight: 600;
+	font-size: 0.95em;
+	color: #555;
+	text-transform: uppercase;
+	letter-spacing: 0.04em;
+}
+
+/* ── Status badge ────────────────────────────────────────────────────────── */
+
+.gs-license-badge {
+	display: inline-flex;
+	align-items: center;
+	gap: 5px;
+	padding: 4px 14px;
+	border-radius: 20px;
+	font-size: 0.85em;
+	font-weight: 600;
+	line-height: 1.4;
+	color: #fff;
+}
+
+.gs-license-badge .dashicons {
+	font-size: 1.1em;
+	width: auto;
+	height: auto;
+}
+
+.gs-license-badge--active {
+	background-color: #1e8449;
+}
+
+.gs-license-badge--inactive {
+	background-color: #c0392b;
+}
+
+/* ── Info table ──────────────────────────────────────────────────────────── */
+
+.gs-license-info-table {
+	width: 100%;
+	border-collapse: collapse;
+	margin-bottom: 28px;
+	font-size: 0.95em;
+}
+
+.gs-license-info-table th,
+.gs-license-info-table td {
+	padding: 8px 4px;
+	text-align: left;
+	border-bottom: 1px solid #f0f0f0;
+	vertical-align: middle;
+}
+
+.gs-license-info-table th {
+	font-weight: 600;
+	color: #555;
+	width: 130px;
+	white-space: nowrap;
+}
+
+.gs-license-info-table tr:last-child th,
+.gs-license-info-table tr:last-child td {
+	border-bottom: none;
+}
+
+.gs-license-key-display {
+	font-family: 'Courier New', Courier, monospace;
+	font-size: 0.9em;
+	background: #f4f4f4;
+	border: 1px solid #ddd;
+	border-radius: 4px;
+	padding: 3px 10px;
+	letter-spacing: 0.05em;
+}
+
+/* ── Form ────────────────────────────────────────────────────────────────── */
+
+.gs-license-form {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+}
+
+.gs-license-field {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+}
+
+.gs-license-field-label {
+	font-weight: 600;
+	font-size: 0.9em;
+	color: #333;
+}
+
+.gs-license-input {
+	max-width: 380px;
+	font-size: 1em;
+	padding: 8px 12px;
+	border: 1px solid #8c8f94;
+	border-radius: 4px;
+	letter-spacing: 0.04em;
+	font-family: 'Courier New', Courier, monospace;
+	transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.gs-license-input:focus {
+	border-color: #2271b1;
+	box-shadow: 0 0 0 1px #2271b1;
+	outline: none;
+}
+
+/* ── Buttons ─────────────────────────────────────────────────────────────── */
+
+.gs-license-btn {
+	display: inline-flex;
+	align-items: center;
+	gap: 7px;
+	padding: 10px 22px;
+	border: none;
+	border-radius: 6px;
+	font-size: 0.95em;
+	font-weight: 600;
+	cursor: pointer;
+	text-decoration: none;
+	transition: filter 0.15s, transform 0.1s;
+	line-height: 1.4;
+	color: #fff;
+	align-self: flex-start;
+}
+
+.gs-license-btn:hover {
+	filter: brightness(1.1);
+	color: #fff;
+}
+
+.gs-license-btn:active {
+	transform: scale(0.98);
+}
+
+.gs-license-btn .dashicons {
+	font-size: 1.1em;
+	width: auto;
+	height: auto;
+}
+
+.gs-license-btn--activate {
+	background-color: #2271b1;
+}
+
+.gs-license-btn--activate:hover {
+	background-color: #135e96;
+	color: #fff;
+}
+
+.gs-license-btn--deactivate {
+	background-color: #c0392b;
+}
+
+.gs-license-btn--deactivate:hover {
+	background-color: #a93226;
+	color: #fff;
+}
+
+/* ── Notices ─────────────────────────────────────────────────────────────── */
+
+.gs-license-notice {
+	max-width: 600px;
+	padding: 12px 18px;
+	border-radius: 6px;
+	margin-bottom: 20px;
+	font-size: 0.95em;
+	font-weight: 500;
+}
+
+.gs-license-notice--success {
+	background-color: #edfaed;
+	border-left: 4px solid #46b450;
+	color: #1a5e1d;
+}
+
+.gs-license-notice--error {
+	background-color: #fce8e6;
+	border-left: 4px solid #dc3232;
+	color: #7e1f1f;
+}
+
+/* ── Locked panel ────────────────────────────────────────────────────────── */
+
+.gs-license-locked-panel {
+	background: #fff;
+	border: 1px solid #e0e0e0;
+	border-radius: 10px;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+	padding: 48px 36px;
+	max-width: 480px;
+	margin-top: 16px;
+	text-align: center;
+}
+
+.gs-license-lock-icon {
+	font-size: 3em !important;
+	width: auto !important;
+	height: auto !important;
+	color: #aaa;
+	display: block;
+	margin: 0 auto 16px;
+}
+
+.gs-license-locked-panel h2 {
+	font-size: 1.3em;
+	margin: 0 0 12px;
+	color: #333;
+}
+
+.gs-license-locked-panel p {
+	color: #666;
+	margin-bottom: 28px;
+	font-size: 0.95em;
+}
+
+.gs-license-locked-panel .gs-license-btn {
+	align-self: center;
+	margin: 0 auto;
+}

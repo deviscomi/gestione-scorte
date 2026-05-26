@@ -22,12 +22,26 @@ class GS_Admin {
 			'dashicons-archive',
 			58
 		);
+
+		add_submenu_page(
+			'gestione-scorte',
+			__( 'Licenza — Gestione Scorte', 'gestione-scorte' ),
+			__( 'Licenza', 'gestione-scorte' ),
+			'manage_woocommerce',
+			'gestione-scorte-licenza',
+			array( 'GS_License', 'render_license_page' )
+		);
 	}
 
 	// ─── Assets ───────────────────────────────────────────────────────────────
 
 	public static function enqueue_assets( $hook ) {
-		if ( 'toplevel_page_gestione-scorte' !== $hook ) {
+		$allowed = array(
+			'toplevel_page_gestione-scorte',
+			'gestione-scorte_page_gestione-scorte-licenza',
+		);
+
+		if ( ! in_array( $hook, $allowed, true ) ) {
 			return;
 		}
 
@@ -37,6 +51,17 @@ class GS_Admin {
 			array(),
 			GS_VERSION
 		);
+
+		wp_enqueue_style(
+			'gs-license',
+			GS_PLUGIN_URL . 'assets/gs-license.css',
+			array( 'gs-admin' ),
+			GS_VERSION
+		);
+
+		if ( 'toplevel_page_gestione-scorte' !== $hook ) {
+			return;
+		}
 
 		wp_enqueue_script(
 			'gs-admin',
@@ -69,6 +94,10 @@ class GS_Admin {
 	// ─── Page HTML ────────────────────────────────────────────────────────────
 
 	public static function render_page() {
+		if ( ! GS_License::is_active() ) {
+			GS_License::render_locked_notice();
+			return;
+		}
 		?>
 		<div class="wrap gs-wrap">
 

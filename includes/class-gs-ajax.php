@@ -19,6 +19,10 @@ class GS_Ajax {
 			wp_send_json_error( array( 'message' => __( 'Permessi insufficienti.', 'gestione-scorte' ) ), 403 );
 		}
 
+		if ( ! GS_License::is_active() ) {
+			wp_send_json_error( array( 'message' => __( 'Licenza non attiva.', 'gestione-scorte' ) ), 403 );
+		}
+
 		$barcode = isset( $_POST['barcode'] ) ? sanitize_text_field( wp_unslash( $_POST['barcode'] ) ) : '';
 
 		if ( '' === $barcode ) {
@@ -41,6 +45,10 @@ class GS_Ajax {
 
 		if ( ! current_user_can( 'manage_woocommerce' ) ) {
 			wp_send_json_error( array( 'message' => __( 'Permessi insufficienti.', 'gestione-scorte' ) ), 403 );
+		}
+
+		if ( ! GS_License::is_active() ) {
+			wp_send_json_error( array( 'message' => __( 'Licenza non attiva.', 'gestione-scorte' ) ), 403 );
 		}
 
 		$mode  = isset( $_POST['mode'] ) ? sanitize_key( $_POST['mode'] ) : '';
