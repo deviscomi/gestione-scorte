@@ -359,8 +359,8 @@ class GS_License {
 
 	private static function api_activate( $license_key ) {
 		$url      = self::build_api_url( 'activate', $license_key );
-		$args     = self::get_api_args( 'POST', array( 'domain' => home_url() ) );
-		$response = wp_remote_post( $url, $args );
+		$args     = self::get_api_args();
+		$response = wp_remote_get( $url, $args );
 
 		if ( is_wp_error( $response ) ) {
 			return array( 'success' => false, 'message' => $response->get_error_message(), 'data' => array() );
@@ -384,8 +384,8 @@ class GS_License {
 
 	private static function api_deactivate( $license_key ) {
 		$url      = self::build_api_url( 'deactivate', $license_key );
-		$args     = self::get_api_args( 'POST' );
-		$response = wp_remote_post( $url, $args );
+		$args     = self::get_api_args();
+		$response = wp_remote_get( $url, $args );
 
 		if ( is_wp_error( $response ) ) {
 			return array( 'success' => false, 'message' => $response->get_error_message(), 'data' => array() );
@@ -407,7 +407,7 @@ class GS_License {
 
 	private static function api_validate( $license_key ) {
 		$url      = self::build_api_url( 'validate', $license_key );
-		$args     = self::get_api_args( 'GET' );
+		$args     = self::get_api_args();
 		$response = wp_remote_get( $url, $args );
 
 		if ( is_wp_error( $response ) ) {
@@ -452,24 +452,16 @@ class GS_License {
 
 	// ── Helpers ────────────────────────────────────────────────────────────────
 
-	private static function get_api_args( $method = 'GET', $body = null ) {
-		$args = array(
-			'method'  => $method,
+	private static function get_api_args() {
+		return array(
 			'headers' => array(
 				'Authorization' => 'Basic ' . base64_encode( GS_API_CONSUMER_KEY . ':' . GS_API_CONSUMER_SECRET ), // phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions.obfuscation_base64_encode
-				'Content-Type'  => 'application/json',
 				'Accept'        => 'application/json',
 				'User-Agent'    => 'GestioneScorte/' . GS_VERSION . '; ' . home_url(),
 			),
 			'timeout'   => 15,
 			'sslverify' => true,
 		);
-
-		if ( null !== $body ) {
-			$args['body'] = wp_json_encode( $body );
-		}
-
-		return $args;
 	}
 
 	private static function build_api_url( $endpoint, $license_key ) {
